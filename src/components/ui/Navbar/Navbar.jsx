@@ -13,10 +13,18 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
+import { useStoreActions, useStoreState } from 'easy-peasy';
 
 const settings = ['Profile', 'Account', 'Dashboard','logout'];
 
 const Navbar=()=> {
+  const {userData}=useStoreState(state=>state.user)
+  const {logoutUser}=useStoreActions(action=>action.user)
+  console.log(userData)
+  const handleLogout=()=>{
+    handleCloseNavMenu()
+    logoutUser()
+  }
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -56,7 +64,6 @@ const Navbar=()=> {
             }}
           >
             <Link style={{textDecoration:'none',color:'white'}}>CAMPUS CLUBS</Link>
-            
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -103,10 +110,9 @@ const Navbar=()=> {
                         login
                     </Button>
                     </Link>
-                    <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'black', display: 'block' }}>
+                    <Button onClick={handleLogout} sx={{ my: 2, color: 'black', display: 'block' }}>
                         logout
                     </Button>
-                    
                 </Box>
                 </MenuItem>
             </Menu>
