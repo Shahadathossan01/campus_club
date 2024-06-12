@@ -43,6 +43,10 @@ const Navbar=()=> {
     setAnchorElUser(null);
   };
 
+  const handle=()=>{
+    handleCloseNavMenu()
+    handleLogout()
+  }
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -113,6 +117,9 @@ const Navbar=()=> {
                     <Button onClick={handleLogout} sx={{ my: 2, color: 'black', display: 'block' }}>
                         logout
                     </Button>
+                    {
+              userData?.user?.username
+            }
                 </Box>
                 </MenuItem>
             </Menu>
@@ -151,9 +158,12 @@ const Navbar=()=> {
                 login
             </Button>
             </Link>
-            <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
+            <Button onClick={handle} sx={{ my: 2, color: 'white', display: 'block' }}>
                 logout
             </Button>
+            {
+              userData?.user?.username
+            }
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
